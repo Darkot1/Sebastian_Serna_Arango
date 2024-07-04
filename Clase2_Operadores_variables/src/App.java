@@ -32,18 +32,35 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese un numero: ");
-        int userInput = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Ingresa un texto: ");
-        String textInput = scanner.nextLine();
+        System.out.println("Ingrese su edad: ");
+        int age = scanner.nextInt();
 
-        System.out.println(userInput);
-        System.out.println(textInput);
+        scanner.nextLine();
+
+        System.out.println("Ingresa su nombre: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Dime tu numero favorito");
+        double myNum = scanner.nextDouble();
+        isDouble = 50.2;
         scanner.close();
 
+        if(age >17){
+            System.out.println("Eres mayor de edad");
+        }else if(age == 12){
+            System.out.println("Eres menor de edad...");
+        }else{
+            System.out.println("Eres menor de edad con "+age+" años");
+        }
 
 
+    switch (age) {
+        case 12:
+                System.out.println("El numero es 12");
+                break;
+        default:
+            System.out.println("No es 12");
+    }
 
 
     }
