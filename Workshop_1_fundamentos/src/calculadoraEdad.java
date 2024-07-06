@@ -1,6 +1,8 @@
 import java.util.Scanner;
 public class calculadoraEdad {
     public void calcular(){
+        System.out.println("**********CALCULAR TU EDAD CON LA FECHA DE NACIMIENTO***************");
+        
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Ingrese su año de nacimiento: ");
