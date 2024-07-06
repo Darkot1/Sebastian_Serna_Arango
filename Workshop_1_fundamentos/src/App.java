@@ -5,7 +5,26 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingresa un numero del 1 al 15 para escoger el problema: ");
+        System.out.println("PROBLEMAS FUNDAMENTOS JAVA");
+        System.out.println("1: Calculadora Básica.");
+        System.out.println("2: Verificador de Edad.");
+        System.out.println("3: Conversor de Unidades.");
+        System.out.println("4: Calculadora de Índice de Masa Corporal (IMC).");
+        System.out.println("5: Clasificador de Números. ");
+        System.out.println("6: Calculadora de Días del Mes. ");
+        System.out.println("7: Menú Interactivo. ");
+        System.out.println("8: Cálculo de Promedio. ");
+        System.out.println("9: Calculadora de Año Bisiesto. ");
+        System.out.println("10: Calculadora de Propina. ");
+        System.out.println("11: Ordenando Tres Números. ");
+        System.out.println("12: Generador de Horóscopo. ");
+        System.out.println("13: Calculadora de Tarifa de Taxi. ");
+        System.out.println("14: Convertidor de Temperatura. ");
+        System.out.println("15: Sistema de Calificaciones. ");
+        System.out.println("16: Contraseña segura. ");
+        System.out.println("17: Identificador de carácter. ");
+        System.out.println("18: Juego de piedra, papel o tijera:. ");
+        System.out.println("Digita el numero del problema que quieras ver: ");
         int numberCase = scanner.nextInt();
 
         switch (numberCase) {
@@ -105,22 +124,26 @@ public class App {
 
             case 16:
                 //Solucion problema 16
-                System.out.println("Solucion problema en contruccion");
+                contraseña contraseña = new contraseña();
+                contraseña.verificarContraseña();
                 break;
 
             case 17:
                 //Solucion problema 17
-                System.out.println("Solucion problema en contruccion");
+                identificarCaracter caracter = new identificarCaracter();
+                caracter.caracter();
                 break;
 
             case 18:
-                //Solucion problema 20
-                System.out.println("Solucion problema en contruccion");
+                //Solucion problema 18
+                piedraPapelTijera piedraPapelTijera = new piedraPapelTijera();
+                piedraPapelTijera.jugarPiedraPapelTijera();
                 break;
                 
             case 19:
-                //Solucion problema 20
-                System.out.println("Solucion problema en contruccion");
+                //Solucion problema 19
+                calculadoraEdad edad = new calculadoraEdad();
+                edad.calcular();
                 break;
 
             case 20:
@@ -133,6 +156,6 @@ public class App {
                 System.out.println("Opcion no valida...");
                 break;
         }
-        scanner.close();
+        scanner.close();   
     }
 }
