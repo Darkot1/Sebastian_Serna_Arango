@@ -148,8 +148,6 @@ public class App {
 
             case 20:
                 //Solucion problema 20
-                cifradoCesar cifrado = new cifradoCesar();
-                cifrado.Cifrar();
                 break;
 
 
