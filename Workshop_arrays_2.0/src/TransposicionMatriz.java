@@ -45,6 +45,12 @@ public class TransposicionMatriz {
 
         System.out.println("******SIMETRIA DE MATRIZ********");
 
+        if (rows == cols) {
+            System.out.println("La matriz es simetrica");
+        }else{
+            System.out.println("La matriz no es simetrica");
+        }
+
 
         scanner.close();
 
