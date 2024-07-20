@@ -9,33 +9,23 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Inventario inventario = new Inventario();
         GestionEmpleados gestion = new GestionEmpleados();
-        
+        menu optioMenu = new menu();
 
         boolean menu = true;
         while (menu) {
-            System.out.println("1: Gestion de inventario.");
-            System.out.println("2: Registro de empleados.");
-            System.out.println("3: Gestion de cursos.");
-            System.out.println("4: Salir.");
-            System.out.println("Seleccione un punto del taller: ");
 
+            optioMenu.menuPrincipal();
             int opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
 
-                boolean inventarioMenu = true;
+                    boolean inventarioMenu = true;
                     while (inventarioMenu) {
-                        System.out.println("1: Agregar producto.");
-                        System.out.println("2: Eliminar producto.");
-                        System.out.println("3: Buscar producto por nombre.");
-                        System.out.println("4: Buscar producto por categoría.");
-                        System.out.println("5: Mostrar todos los productos.");
-                        System.out.println("6: Volver al menu principal.");
-                        System.out.println("Seleccione una opcion del menú de inventario: ");
 
+                        optioMenu.menuInventario();
                         int inventarioOpcion = scanner.nextInt();
-                        scanner.nextLine();  
+                        scanner.nextLine();
 
                         switch (inventarioOpcion) {
                             case 1:
@@ -57,8 +47,6 @@ public class App {
                                 break;
                             case 4:
                                 System.out.println("Ingrese la categoria del producto a buscar: ");
-                                
-                               
 
                                 break;
                             case 5:
@@ -73,37 +61,34 @@ public class App {
                         }
                     }
                     break;
-                
+
                 case 2:
 
-                boolean empleadoMenu = true;
-                while (empleadoMenu) {
-                    System.out.println("1: Agregar Empleado.");
-                    System.out.println("2: Ver empleados.");
-                    System.out.println("3: Volver al menu principal.");
-                    System.out.println("Seleccione una opcion del menu de empleados: ");
+                    boolean empleadoMenu = true;
+                    while (empleadoMenu) {
 
-                    int empleadoOpcion = scanner.nextInt();
-                    scanner.nextLine();  
+                        optioMenu.menuEmpleado();
+                        int empleadoOpcion = scanner.nextInt();
+                        scanner.nextLine();
 
-                    switch (empleadoOpcion) {
-                        case 1:
-                          gestion.addEmployee();
-                        
-                            break;
-                        case 2:
-                            gestion.showEmployee();
+                        switch (empleadoOpcion) {
+                            case 1:
+                                gestion.addEmployee();
 
-                            break;
-                        case 3:
-                            
-                        empleadoMenu = false;
-                            break;
-                        default:
-                            System.out.println("Opcion invalida");
-                            break;
+                                break;
+                            case 2:
+                                gestion.showEmployee();
+
+                                break;
+                            case 3:
+
+                                empleadoMenu = false;
+                                break;
+                            default:
+                                System.out.println("Opcion invalida");
+                                break;
+                        }
                     }
-                }
 
                     break;
 
@@ -115,15 +100,13 @@ public class App {
                     menu = false;
                     System.out.println("Hasta pronto :)");
                     break;
-            
+
                 default:
-                System.out.println("Opcion invalida");
+                    System.out.println("Opcion invalida");
                     break;
             }
 
         }
-
-
 
         scanner.close();
     }
