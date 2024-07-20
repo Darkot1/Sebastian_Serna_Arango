@@ -11,7 +11,7 @@ public class App {
         
         boolean exit = false;
         
-        while (!exit) {
+        while (exit == false) {
             System.out.println("Menu del Taller:");
             System.out.println("1. Agregar trabajo");
             System.out.println("2. Mostrar trabajos");
