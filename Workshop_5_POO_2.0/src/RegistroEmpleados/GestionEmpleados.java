@@ -6,17 +6,20 @@ import java.util.Scanner;
 public class GestionEmpleados {
 
     Scanner scanner = new Scanner(System.in);
+ 
 
-    private ArrayList<EmpleadoPermanente> permanentEmployee = new ArrayList<>();
-    private ArrayList<EmpleadoTemporal> temporaryEmployee = new ArrayList<>();
+    ArrayList<Empleado> employee = new ArrayList<>();
 
-    public void aggEmployee() {
-        System.out.println("¿Desea agregar un empleado permanente o temporal?");
-        System.out.println("1. Permanente");
-        System.out.println("2. Temporal");
+
+
+    public void addEmployee(){
+
+        System.out.println("1: empleado permanente.");
+        System.out.println("2: empleado temporal.");
+        System.out.println("Que empleado desea agregar? ");
         int choice = scanner.nextInt();
-        
-        scanner.nextLine(); 
+
+        scanner.nextLine();
 
         System.out.println("Ingrese el nombre del empleado: ");
         String name = scanner.nextLine();
@@ -31,32 +34,60 @@ public class GestionEmpleados {
         Integer salary = scanner.nextInt();
 
         if (choice == 1) {
+            System.out.println("Ingrese los años que tiene el empleado en la empresa: ");
+            Integer yearsEmployed = scanner.nextInt();
+
+            EmpleadoPermanente empleadoPermanente = new EmpleadoPermanente(name, age, employeeID, salary, yearsEmployed);
+            employee.add(empleadoPermanente);
+        }else if (choice == 2) {
             scanner.nextLine();
-            System.out.print("Ingrese la fecha de inicio de contrato (dd-mm-yyyy): ");
-            String fechaInicio = scanner.nextLine();
-            
-            EmpleadoPermanente PerEmployee = new EmpleadoPermanente(name, age, employeeID, salary, fechaInicio);
 
-            permanentEmployee.add(PerEmployee);
+            System.out.println("Ingrese la fecha de inicio del contrato: (dd-mm-yyy)");
+            String endContract = scanner.nextLine();
 
-            System.out.println("Empleado permanente con nombre: "+name+" Agregado.");
-            System.out.println();
+            EmpleadoTemporal empleadoTemporal = new EmpleadoTemporal(name, age, employeeID, salary, endContract);
+            employee.add(empleadoTemporal);
+        }else{
+            System.out.println("Opcion invalida.");
+        }
 
-        } else if (choice == 2) {
-            scanner.nextLine();
-            System.out.print("Ingrese la fecha de inicio de contrato (dd-mm-yyyy): ");
-            String fechaInicio = scanner.nextLine();
 
-            System.out.print("Ingrese la fecha de fin de contrato (dd-mm-yyyy): ");
-            String fechaFinContrato = scanner.nextLine();
+       
+    }
 
-            EmpleadoTemporal empTemporal = new EmpleadoTemporal(name, age, employeeID, salary, fechaInicio, fechaFinContrato);
+    public void showEmployee() {
+        if (employee.isEmpty()) {
+            System.out.println("No hay empleados registrados.");
+            return;
+        }
+    
+        for (Empleado empleado : employee) {
+            System.out.println("Nombre empleado: " + empleado.getName());
+            System.out.println("Edad del empleado: " + empleado.getAge());
+            System.out.println("ID empleado: " + empleado.getEmployeeID());
+            System.out.println("Salario del empleado: " + empleado.getSalary());
+    
+            if (empleado instanceof EmpleadoPermanente) {
 
-            temporaryEmployee.add(empTemporal);
-            System.out.println("Empleado temporal con nombre: "+name+" Agregado.");
-            System.out.println();
-        } else {
-            System.out.println("Opción no válida.");
+                EmpleadoPermanente empPermanente = (EmpleadoPermanente) empleado;
+                
+                System.out.println("Tipo: Empleado Permanente");
+                System.out.println("Años en la empresa: " + empPermanente.getYearsEmployed());
+
+            } else if (empleado instanceof EmpleadoTemporal) {
+
+                EmpleadoTemporal empTemporal = (EmpleadoTemporal) empleado;
+
+                System.out.println("Tipo: Empleado Temporal");
+                System.out.println("Fecha fin de contrato: " + empTemporal.getEndContract());
+            }
+    
+            System.out.println("-------------------------");
         }
     }
+
+
+
+
+
 }

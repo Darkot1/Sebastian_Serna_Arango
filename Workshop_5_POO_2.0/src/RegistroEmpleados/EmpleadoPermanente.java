@@ -1,22 +1,23 @@
 package RegistroEmpleados;
 
 public class EmpleadoPermanente extends Empleado {
-    private String startContract;
+    private Integer yearsEmployed;
 
-    public EmpleadoPermanente(String name, Integer age, Integer employeeID, Integer salary, String startContract) {
+
+    public EmpleadoPermanente(String name, Integer age, Integer employeeID, Integer salary, Integer yearsEmployed) {
         super(name, age, employeeID, salary);
-        this.startContract = startContract;
+        this.yearsEmployed = yearsEmployed;
     }
     
     //METODOS GET
 
-    public String getStartContract() {
-        return startContract;
+    public Integer getYearsEmployed() {
+        return yearsEmployed;
     }
 
     //METODOS SET
-    public void setStartContract(String startContract) {
-        this.startContract = startContract;
+    public void setYearsEmployed(Integer yearsEmployed) {
+        this.yearsEmployed = yearsEmployed;
     }
 
     

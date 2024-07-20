@@ -3,10 +3,12 @@ import java.util.Scanner;
 import GestionInventario.Inventario;
 import GestionInventario.ProductoEspecifico;
 import RegistroEmpleados.GestionEmpleados;
+
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Inventario inventario = new Inventario();
+        GestionEmpleados gestion = new GestionEmpleados();
         
 
         boolean menu = true;
@@ -77,30 +79,25 @@ public class App {
                 boolean empleadoMenu = true;
                 while (empleadoMenu) {
                     System.out.println("1: Agregar Empleado.");
-                    System.out.println("2: Ver empleados Temporales.");
-                    System.out.println("3: Ver empleados Permanentes");
-                    System.out.println("4: Volver al menu principal.");
-                    System.out.println("Seleccione una opcion del menú de empleados: ");
+                    System.out.println("2: Ver empleados.");
+                    System.out.println("3: Volver al menu principal.");
+                    System.out.println("Seleccione una opcion del menu de empleados: ");
 
                     int empleadoOpcion = scanner.nextInt();
                     scanner.nextLine();  
 
                     switch (empleadoOpcion) {
                         case 1:
-                            GestionEmpleados gestionEmpleados = new GestionEmpleados();
-                            gestionEmpleados.aggEmployee();
+                          gestion.addEmployee();
+                        
                             break;
                         case 2:
-                            
+                            gestion.showEmployee();
 
                             break;
                         case 3:
                             
-
-                            break;
-                        case 4:
-                            empleadoMenu = false;
-
+                        empleadoMenu = false;
                             break;
                         default:
                             System.out.println("Opcion invalida");

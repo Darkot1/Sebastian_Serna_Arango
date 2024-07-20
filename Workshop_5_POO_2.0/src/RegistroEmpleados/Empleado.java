@@ -7,6 +7,8 @@ public class Empleado extends Persona{
     private Integer employeeID;
     private Integer salary;
 
+   
+
 
     public Empleado(String name, Integer age, Integer employeeID, Integer salary) {
         super(name, age);
@@ -31,11 +33,5 @@ public class Empleado extends Persona{
     public void setSalary(Integer salary) {
         this.salary = salary;
     }
-
-
-    
-
-
-
 
 }
