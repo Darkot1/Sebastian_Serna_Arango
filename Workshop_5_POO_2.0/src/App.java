@@ -94,6 +94,29 @@ public class App {
 
                 case 3:
 
+                    boolean menuCursos = true;
+                    while (menuCursos) {
+                        optioMenu.menuCurso();
+                        int cursoOpcion = scanner.nextInt();
+
+                        switch (cursoOpcion) {
+                            case 1:
+                                
+                                break;
+
+                            case 2:
+
+                                break;
+                        
+                            default:
+                                break;
+                        }
+
+
+                    }
+
+
+
                     break;
 
                 case 4:

@@ -1,6 +1,7 @@
 public class menu {
 
     public void menuPrincipal() {
+        System.out.println("TALLER POO 2.0");
         System.out.println("1: Gestion de inventario.");
         System.out.println("2: Registro de empleados.");
         System.out.println("3: Gestion de cursos.");
@@ -27,5 +28,16 @@ public class menu {
         System.out.println("3: Volver al menu principal.");
         System.out.println("Seleccione una opcion del menu de empleados: ");
     }
+
+
+    public void menuCurso() {
+        System.out.println("MENU GESTION DE CURSOS");
+        System.out.println("1: Datos estudiante. ");
+        System.out.println("2: Agregar cursos. ");
+        System.out.println("3: Inscribirse a un curso. ");
+        System.out.println("4: Ver estudiantes inscritos. ");
+        System.out.println("Seleccione una opcion del menu de cursos: ");
+    }
+
 
 }
