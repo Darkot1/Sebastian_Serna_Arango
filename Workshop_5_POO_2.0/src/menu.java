@@ -32,11 +32,12 @@ public class menu {
 
     public void menuCurso() {
         System.out.println("MENU GESTION DE CURSOS");
-        System.out.println("1: Datos estudiante. ");
-        System.out.println("2: Agregar cursos. ");
-        System.out.println("3: Inscribirse a un curso. ");
-        System.out.println("4: Ver estudiantes inscritos. ");
-        System.out.println("Seleccione una opcion del menu de cursos: ");
+        System.out.println("1: Agregar curso.");
+        System.out.println("2: Inscribir estudiante en curso.");
+        System.out.println("3: Mostrar cursos.");
+        System.out.println("4: Listar estudiantes en un curso.");
+        System.out.println("5: Volver al menu principal.");
+        System.out.println("Seleccione una opcion del menu de cursos: ");;
     }
 
 

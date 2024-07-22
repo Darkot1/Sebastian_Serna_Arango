@@ -37,7 +37,11 @@ public class Estudiante {
     }
 
 
-
+    public void displayStudent(){
+        System.out.println("ID: "+id);
+        System.out.println("Nombre: "+name);
+        System.out.println("Correo: "+email);
+    }
 
 
 

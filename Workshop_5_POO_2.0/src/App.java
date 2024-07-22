@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import GestionCursos.Curso;
+import GestionCursos.Estudiante;
+import GestionCursos.GestionCurso;
 import GestionInventario.Inventario;
 import GestionInventario.ProductoEspecifico;
 import RegistroEmpleados.GestionEmpleados;
@@ -9,6 +12,8 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Inventario inventario = new Inventario();
         GestionEmpleados gestion = new GestionEmpleados();
+        GestionCurso gestionCurso = new GestionCurso();
+
         menu optioMenu = new menu();
 
         boolean menu = true;
@@ -101,21 +106,62 @@ public class App {
 
                         switch (cursoOpcion) {
                             case 1:
+                                scanner.nextLine();
+                                System.out.println("Ingrese el nombre del curso: ");
+                                String courseName = scanner.nextLine();
                                 
+
+                                System.out.println("Ingrese el código del curso: ");
+                                int cursoId = scanner.nextInt();
+
+                                Curso course = new Curso(cursoId, courseName);
+
+                                gestionCurso.addCourse(course);
                                 break;
 
                             case 2:
+                                scanner.nextLine();
+                                System.out.println("Ingrese el nombre del estudiante: ");
+                                String name = scanner.nextLine();
 
+                                System.out.println("Ingrese el email del estudiante: ");
+                                String email = scanner.nextLine();
+
+                                System.out.println("Ingrese el ID del estudiante: ");
+                                int id = scanner.nextInt();
+                                scanner.nextLine();
+
+                                Estudiante student = new Estudiante(id, name, email);
+
+                                System.out.println("Ingrese el codigo del curso para inscribirse: ");
+                                int courseCode = scanner.nextInt();
+                                scanner.nextLine();
+                                
+                                gestionCurso.enrollStudentCourse(courseCode, student);
                                 break;
-                        
+
+                            case 3:
+                                gestionCurso.showCourses();
+                                break;
+
+                            case 4:
+                                System.out.println("Ingrese el codigo del curso para ver los estudiantes inscritos: ");
+                                int code = scanner.nextInt();
+                                scanner.nextLine();
+
+                                gestionCurso.listStudentsInCourse(code);
+                                break;
+
+                            case 5:
+                                menuCursos = false;
+                                break;
+
                             default:
+                                System.out.println("Opcion invalida");
                                 break;
                         }
 
-
                     }
-
-
 
                     break;
 

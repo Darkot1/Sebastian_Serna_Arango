@@ -7,44 +7,52 @@ public class Curso {
     private String name;
     private ArrayList<Estudiante> studentList;
 
-    public Curso(int code, String name, ArrayList<Estudiante> studentList) {
+    
+
+    public Curso(int code, String name) {
         this.code = code;
         this.name = name;
-        this.studentList = new ArrayList<>();
+        this.studentList = new ArrayList<>();  
     }
 
-   //METODOS GET
-   public int getCode() {
-       return code;
-   }
+    // Métodos GET
+    public int getCode() {
+        return code;
+    }
 
-   public String getName() {
-       return name;
-   }
+    public String getName() {
+        return name;
+    }
 
-   public ArrayList<Estudiante> getStudentList() {
-       return studentList;
-   }
+    public ArrayList<Estudiante> getStudentList() {
+        return studentList;
+    }
 
-   //METODOS SET
-   public void setCode(int code) {
-       this.code = code;
-   }
+    // Métodos SET
+    public void setCode(int code) {
+        this.code = code;
+    }
 
-   public void setName(String name) {
-       this.name = name;
-   }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-   public void setStudentList(ArrayList<Estudiante> studentList) {
-       this.studentList = studentList;
-   }
+    public void setStudentList(ArrayList<Estudiante> studentList) {
+        this.studentList = studentList;
+    }
 
+    public void enrollStudent(Estudiante student) {
+        studentList.add(student);
+    }
 
-   public void enrollStudent(Estudiante student){
-     studentList.add(student);
-   }
-
-
-
-
+    public void showStudentList() {
+        if (studentList.isEmpty()) {
+            System.out.println("No hay estudiantes en este curso.");
+        } else {
+            for (Estudiante estudiante : studentList) {
+                estudiante.displayStudent();
+                System.out.println("----------------------------------------");
+            }
+        }
+    }
 }
