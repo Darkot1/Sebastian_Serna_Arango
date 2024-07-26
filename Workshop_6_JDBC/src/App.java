@@ -40,7 +40,7 @@ public class App {
                     bookController.createBook();
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null, "No se ha implementado :(");
+                    bookController.deleteBook();
                     break;
 
                 case 5:

@@ -37,6 +37,24 @@ public class BookController {
         }   
     }
 
+    public void deleteBook(){
+
+        int bookID = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del libro a eliminar"));
+
+       
+        boolean isDeleted = this.bookController.delete(bookID);
+
+        if (isDeleted) {
+            JOptionPane.showMessageDialog(null, "Libro eliminado con exito.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontro un Libro con el ID: "+bookID);
+        }
+
+    }
+
+
+
+
     private boolean checkIdAuthor(int authorId) {
         Connection connection = ConfigDB.openConnection();
         boolean exists = false;
@@ -61,5 +79,7 @@ public class BookController {
         ConfigDB.closeConnection();
         return exists;
     }
+
+    
 }
 

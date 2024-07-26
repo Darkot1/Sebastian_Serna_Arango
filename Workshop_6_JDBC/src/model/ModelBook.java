@@ -58,8 +58,34 @@ public class ModelBook implements CRUDGeneric{
 
     @Override
     public Boolean delete(int id) {
-       
-        return null;
+       //OPEN connection 
+       Connection connection = ConfigDB.openConnection();
+
+       boolean exist = false;
+       try {
+           //Create Querry
+           String sql = "DELETE FROM books WHERE id = ?";
+           
+           //Create PreparedStatement
+           PreparedStatement preparedStatement = connection.prepareStatement(sql);
+           
+           //Assing to?
+           preparedStatement = connection.prepareStatement(sql);
+           preparedStatement.setInt(1, id);
+           
+           //Execute Query
+           int affectedRows = preparedStatement.executeUpdate();;
+           
+           exist = affectedRows > 0;
+          
+           preparedStatement.close();
+
+       } catch (Exception e) {
+           throw new RuntimeException("ERROR: " + e.getMessage());
+       }
+
+       ConfigDB.closeConnection();
+       return exist;
     }
 
     @Override
