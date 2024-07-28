@@ -15,11 +15,11 @@ import persistence.ConfigDB;
 public class StudentModel implements CRUDGeneric{
 
     @Override
-    public Object create(Object Object) {
+    public Object create(Object object) {
         //OPEN connection
         Connection connection = ConfigDB.openConnection();
         //Transform object
-        Student student = (Student) Object;
+        Student student = (Student) object;
         try {
             //Create SQL Query
             String sqlQuery = "INSERT INTO student (name, age) values(?,?)";
@@ -38,7 +38,7 @@ public class StudentModel implements CRUDGeneric{
             ResultSet result = preparedStatement.getGeneratedKeys();
 
             while (result.next()) {
-                student.setId((result.getInt(1)));;  
+                student.setId((result.getInt(1)));  
             }
                 
         
@@ -56,14 +56,91 @@ public class StudentModel implements CRUDGeneric{
 
     @Override
     public Object readById(int id) {
-      
-        throw new UnsupportedOperationException("Unimplemented method 'readById'");
+         
+        //OPEN connection
+        Connection connection = ConfigDB.openConnection();
+
+        Object student = null;
+
+        try {
+
+            //Create SQL Query
+            String sqlQuery = "SELECT * FROM student WHERE id =?;";
+
+            //Create statement
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+
+            //assing to?
+            preparedStatement.setInt(1, id);
+
+            //Execute SQL Query
+            preparedStatement.execute();
+
+            //Get result
+            ResultSet result = preparedStatement.getResultSet();
+
+           while (result.next()) {
+                    student = new Student(
+                    result.getInt("id"),
+                    result.getString("name"),
+                    result.getInt("age")
+                );
+            
+           }
+            
+           preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        ConfigDB.closeConnection();
+        return student;
     }
 
     @Override
     public ArrayList<Object> readAll() {
        
-        throw new UnsupportedOperationException("Unimplemented method 'readAll'");
+        //OPEN connection
+       Connection connection = ConfigDB.openConnection();
+
+       //Instance ArrayList
+       ArrayList<Object> students = new ArrayList<>();
+
+       try {
+           //Create SQL Query
+           String sqlQuery = "SELECT * FROM student;";
+
+           //Create statement
+           PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+
+           //assing to ?
+
+           //Execute SQL Query
+           preparedStatement.execute();
+
+           //Get result
+           ResultSet result = preparedStatement.getResultSet();
+
+           while (result.next()) {
+             Student student = new Student(result.getInt("id"), result.getString("name"), result.getInt("age"));
+             
+             students.add(student);
+           }
+
+
+
+           preparedStatement.close();
+
+           JOptionPane.showMessageDialog(null, "Student successfully");
+           
+       }catch(SQLException e){
+           throw new RuntimeException(e);
+       }
+
+       ConfigDB.closeConnection();
+
+       return  students;
     }
 
     @Override
@@ -75,7 +152,42 @@ public class StudentModel implements CRUDGeneric{
     @Override
     public Boolean delete(int id) {
       
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        //Connection
+        Connection connection = ConfigDB.openConnection();
+
+        boolean result = false;
+
+        try {
+            //Create Query
+            String sql = "DELETE FROM student WHERE id = ?";
+
+            //Create statement
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            //set parameter
+            preparedStatement.setInt(1, id);
+            
+            //Execute query
+            int deleteRow = preparedStatement.executeUpdate();
+
+            if (deleteRow > 0) {
+                result = true;
+                JOptionPane.showMessageDialog(null, "Student successfully deleted");
+            }else{
+                JOptionPane.showMessageDialog(null, "No rows deleted");
+            }
+
+            preparedStatement.close();
+
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+
+        }
+
+        ConfigDB.closeConnection();
+        return result;
     }
     
 

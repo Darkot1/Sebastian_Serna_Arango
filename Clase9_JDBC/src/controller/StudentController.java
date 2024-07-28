@@ -1,7 +1,8 @@
 package controller;
 
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 
 import entity.Student;
 import model.StudentModel;
@@ -10,34 +11,38 @@ public class StudentController {
 
     StudentModel objStudentModel;
 
-
-    public StudentController(){
+    public StudentController() {
         this.objStudentModel = new StudentModel();
     }
 
-    public void createStudent(){
-        
-        //Input of name
-        String name = JOptionPane.showInputDialog("Ingrese su nombre");
+    public Object createStudent(String name, int age) {
 
-        //Input of age
-        int age = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su edad"));
+       // Crear una instancia de Student
+       Student student = new Student();
+       student.setName(name);
+       student.setAge(age);
 
-        //Create instance of student
-        Student objStudent = new Student(name, age);
+       // Llamar al método create del modelo con el objeto Student
+       return this.objStudentModel.create(student);
 
-        Student result = (Student) this.objStudentModel.create(objStudent);
+    }
 
+    public void readAllStudent() {
+
+        ArrayList<Object> result = this.objStudentModel.readAll();
 
         JOptionPane.showMessageDialog(null, result);
 
     }
 
+    public Object readById(int id) {
+        return this.objStudentModel.readById(id);
+    }
+
+    public Object deleteStudent(int id){
+        return this.objStudentModel.delete(id);
+    }
+
     
 
-
-
-
-
-    
 }
