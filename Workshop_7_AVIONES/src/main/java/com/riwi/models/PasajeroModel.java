@@ -1,6 +1,5 @@
 package com.riwi.models;
 
-import com.riwi.entities.Avion;
 import com.riwi.entities.Pasajero;
 import com.riwi.persistence.configDB.MysqlConfig;
 import com.riwi.persistence.imodel.IPasajeroModel;
