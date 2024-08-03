@@ -21,4 +21,13 @@ public class ReservationController {
         ireservationModel.delete(id);
         return true;
     }
+
+    public void updateReservation(int idReservation, String newSeat) {
+        Reservation reservation = new Reservation();
+        reservation.setIdReservation(idReservation);
+        reservation.setSeat(newSeat);
+
+        ireservationModel.update(reservation);
+    }
+
 }

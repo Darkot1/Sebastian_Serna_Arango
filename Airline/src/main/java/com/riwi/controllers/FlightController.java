@@ -4,6 +4,8 @@ import com.riwi.entities.Flight;
 import com.riwi.models.FlightModel;
 import com.riwi.persistence.imodel.IflightModel;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class FlightController {
@@ -26,6 +28,14 @@ public class FlightController {
 
     public ArrayList<Flight> readAll(String name){
         return  iflightModel.readAll(name);
+    }
+
+    public Flight updateFlight(Integer id, Date departureDate, Time departureTime){
+        Flight flight = new Flight();
+        flight.setIdFlight(id);
+        flight.setDepartureDate(departureDate);
+        flight.setDepartureTime(departureTime);
+        return iflightModel.update(flight);
     }
 
 }

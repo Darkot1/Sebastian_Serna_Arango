@@ -1,11 +1,10 @@
 package com.riwi.models;
 
-import com.riwi.entities.Flight;
+
 import com.riwi.entities.Reservation;
 import com.riwi.persistence.configDB.MysqlConfig;
 import com.riwi.persistence.imodel.IreservationModel;
 
-import javax.swing.text.html.parser.Entity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,9 +65,29 @@ public class ReservationModel implements IreservationModel {
 
     @Override
     public void delete(Integer integer) {
+        //creamos conexion para abrirla
+        Connection connection = MysqlConfig.openConnection();
 
+        //Creamos el query
+        String sqlQuery = "DELETE FROM reservation WHERE id_reservation = ?";
+
+        try {
+            //Preparamos el query con statement
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            //Remplazamos los ?
+            statement.setInt(1, integer);
+
+            //Ejecutamos el query
+            statement.executeUpdate();
+            System.out.println("Reservacion eliminado con exito");
+
+        }catch (SQLException e){
+            throw new RuntimeException(e.getMessage());
+        }
+        //Cerramos conexion
+        MysqlConfig.closeConnection();
     }
-
 
     @Override
     public ArrayList<Reservation> readAll(Integer id) {
@@ -119,4 +138,36 @@ public class ReservationModel implements IreservationModel {
 
         return reservations;
     }
+
+    @Override
+    public Reservation update(Reservation request) {
+        Connection connection = MysqlConfig.openConnection();
+
+        String sqlQuery = "UPDATE reservation SET seat = ? WHERE id_reservation = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            statement.setString(1, request.getSeat());
+            statement.setInt(2, request.getIdReservation());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Reservation updated successfully");
+            } else {
+                System.out.println("No reservation found with the given ID");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+        MysqlConfig.closeConnection();
+
+        return request;
+    }
+
+    
 }

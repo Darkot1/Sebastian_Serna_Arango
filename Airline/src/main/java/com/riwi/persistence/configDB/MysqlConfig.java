@@ -12,7 +12,7 @@ public class MysqlConfig {
         //Definimos parametros de la base de datos
         String  url ="jdbc:mysql://127.0.0.1:3306/Airport";
         String user = "root";
-        String password = "Rlwl2023.";
+        String password = "310829";
 
     try {
         connection = DriverManager.getConnection(url,user,password);

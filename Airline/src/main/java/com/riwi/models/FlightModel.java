@@ -140,4 +140,35 @@ public class FlightModel implements IflightModel {
 
         return flights;
     }
+
+    @Override
+    public Flight update(Flight request) {
+        Connection connection = MysqlConfig.openConnection();
+
+        String sqlQuery = "UPDATE flight SET departure_date = ?, departure_time = ? WHERE id_flight = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            statement.setDate(1, request.getDepartureDate());
+            statement.setTime(2, request.getDepartureTime());
+            statement.setInt(3, request.getIdFlight());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Flight updated successfully");
+            } else {
+                System.out.println("No flight found with the given ID");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+        MysqlConfig.closeConnection();
+
+        return request;
+    }
 }

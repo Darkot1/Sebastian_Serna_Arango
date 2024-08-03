@@ -95,6 +95,7 @@ public class Main {
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion invalida.");
+                    
             }
 
         }
