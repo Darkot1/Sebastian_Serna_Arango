@@ -1,7 +1,6 @@
 package com.riwi.entities;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class Reservation {
     private int idReservation;
